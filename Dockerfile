@@ -3,7 +3,7 @@ FROM dockerfile/java:oracle-java7
 ENV DEBIAN_FRONTEND noninteractive 
 
 RUN wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add - && \
-	echo "deb http://packages.elasticsearch.org/logstash/1.4/debian stable main" | tee -a /etc/apt/sources.list.d/elasticsearch.list && \
+	echo "deb http://packages.elasticsearch.org/logstash/1.5/debian stable main" | tee -a /etc/apt/sources.list.d/elasticsearch.list && \
 	apt-get update && apt-get install logstash
 	
 ADD conf/logstash.conf /etc/logstash/conf.d/logstash.conf
