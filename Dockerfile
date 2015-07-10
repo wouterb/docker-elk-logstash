@@ -1,4 +1,4 @@
-FROM dockerfile/java:oracle-java7
+FROM relateiq/oracle-java8
 
 ENV DEBIAN_FRONTEND noninteractive 
 
@@ -9,8 +9,6 @@ RUN wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key 
 ADD conf/logstash.conf /etc/logstash/conf.d/logstash.conf
 ADD conf/elasticsearch.yml /etc/logstash/elasticsearch.yml
 
-EXPOSE 5000
-
 ENV JAVA_OPTS -Djava.io.tmpdir=/var/lib/logstash -Des.config=/etc/logstash/elasticsearch.yml
 
-ENTRYPOINT ["/opt/logstash/bin/logstash", "-f" , "/etc/logstash/conf.d/logstash.conf"]
+ENTRYPOINT ["/opt/logstash/bin/logstash", "-f" , "/etc/logstash/conf.d/logstash.conf", "--verbose"]
